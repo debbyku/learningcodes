@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta1
+kind: Config
+build:
+  artifacts:
+  - image: localhost:32000/skaffold-jib-1
+    jib:
+      # project can be the relative directory
+      project: project1
+  - image: localhost:32000/skaffold-jib-2
+    jib:
+      # project can be [groupId]:artifactId
+      project: :skaffold-project-2
+
+deploy:
+  kubeContext: microk8s
+# optional profile to run the jib build on Google Cloud Build
+#profiles:
+#  - name: gcb
+#    build:
+#      googleCloudBuild: {}
